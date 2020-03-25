@@ -8,10 +8,10 @@
   <packaging>jar</packaging>
 
   <properties>
-    <maven.compiler.source>1.6</maven.compiler.source>
-    <maven.compiler.target>1.6</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
     <encoding>UTF-8</encoding>
-    <scala.version>2.9.0.RC1</scala.version>
+    <scala.version>2.12.11</scala.version>
   </properties>
 
   <dependencies>
@@ -25,14 +25,14 @@
     <dependency>
       <groupId>net.htmlparser.jericho</groupId>
       <artifactId>jericho-html</artifactId>
-      <version>3.1</version>
+      <version>3.4</version>
     </dependency>
 
     <!-- XPath Parser -->
     <dependency>
       <groupId>jaxen</groupId>
       <artifactId>jaxen</artifactId>
-      <version>1.1.1</version>
+      <version>1.2.0</version>
     </dependency>
 
     <!-- Logger -->
@@ -51,9 +51,17 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>org.scala-tools</groupId>
-        <artifactId>maven-scala-plugin</artifactId>
-        <version>2.15.2</version>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>net.alchim31.maven</groupId>
+        <artifactId>scala-maven-plugin</artifactId>
+        <version>4.3.1</version>
         <executions>
           <execution>
             <goals>
@@ -62,6 +70,14 @@
             </goals>
           </execution>
         </executions>
+        <configuration>
+          <sourceDir>src/main/scala</sourceDir>
+          <sourceDir>src/main/java</sourceDir>
+          <jvmArgs>
+            <jvmArg>-Xms64m</jvmArg>
+            <jvmArg>-Xmx1024m</jvmArg>
+          </jvmArgs>
+        </configuration>
       </plugin>
     </plugins>
   </build>
